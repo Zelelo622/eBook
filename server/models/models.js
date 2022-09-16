@@ -9,6 +9,10 @@ const User = sequelize.define('user', {
     role: { type: DataTypes.STRING, defaultValue: "USER" }
 });
 
+// User.sync({ alter: true }).then(
+//     () => console.log('message')
+// );
+
 const Book = sequelize.define('book', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: { type: DataTypes.STRING, allowNull: false },
