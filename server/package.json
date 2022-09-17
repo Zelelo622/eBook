@@ -16,12 +16,17 @@
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "express-fileupload": "^1.4.0",
+    "faker": "^5.5.3",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
+    "knex": "^2.3.0",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.21.6"
+    "sequelize": "^6.21.6",
+    "yargs": "^17.5.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "sequelize-cli": "^6.4.1"
   }
 }
