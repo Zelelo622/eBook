@@ -1,11 +1,26 @@
 const { Author } = require('../models/models');
 
-const faker = require('faker');
+// const faker = require('faker');
 
 class AuthorController {
     async create(req, res) {
         const { first_name, last_name } = req.body;
         const author = await Author.create({ first_name, last_name });
+        return res.json(author);
+    }
+
+    async getAll(req, res) {
+        const authores = await Author.findAll();
+        return res.json(authores);
+    }
+
+    async delete(req, res) {
+        const { id } = req.params;
+        const author = Author.destroy(
+            {
+                where: { id }
+            }
+        );
         return res.json(author);
     }
 
@@ -23,11 +38,6 @@ class AuthorController {
     //     }
     //     res.redirect('/');
     // }
-
-    async getAll(req, res) {
-        const authores = await Author.findAll();
-        return res.json(authores);
-    }
 }
 
-module.exports = new AuthorController()
+module.exports = new AuthorController();
