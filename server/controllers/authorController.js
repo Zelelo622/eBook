@@ -24,6 +24,21 @@ class AuthorController {
         return res.json(author);
     }
 
+    async update(req, res) {
+        const { id } = req.params;
+        const { first_name, last_name } = req.body;
+        const author = Author.update(
+            {
+                first_name: first_name,
+                last_name: last_name
+            },
+            {
+                where: { id }
+            }
+        );
+        return res.json(author);
+    }
+
     // async createAll(req, res) {
     //     for (let i = 0; i < 1000; i++) {
     //         let fakke = new Author({
