@@ -30,6 +30,32 @@ class BookController {
         );
         return res.json(book);
     }
+
+    async delete(req, res) {
+        const { id } = req.params;
+        const book = Book.destroy(
+            {
+                where: { id }
+            }
+        );
+        return res.json(book);
+    }
+
+    async update(req, res) {
+        const { id } = req.params;
+        const { title, publication_date, link_file } = req.body;
+        const book = Book.update(
+            {
+                title: title,
+                publication_date: publication_date,
+                link_file: link_file
+            },
+            {
+                where: { id }
+            }
+        );
+        return res.json(book);
+    }
 }
 
 module.exports = new BookController()
