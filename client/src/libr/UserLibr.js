@@ -10,6 +10,7 @@ export default class UserLib {
     setIsAuth(bool) {
         this._isAuth = bool;
     }
+
     setUser(bool) {
         this._user = bool;
     }
@@ -17,6 +18,7 @@ export default class UserLib {
     get isAuth() {
         return this._isAuth;
     }
+
     get user() {
         return this._user;
     }

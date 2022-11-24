@@ -17,19 +17,31 @@ const Book = sequelize.define('book', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: { type: DataTypes.STRING, allowNull: false },
     publication_date: { type: DataTypes.DATE },
-    link_file: { type: DataTypes.STRING }
+    text: { type: DataTypes.TEXT }
 });
+
+// Book.sync({ alter: true }).then(
+//         () => console.log('message')
+//     );
 
 const Bookmark = sequelize.define('bookmark', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     page_num: { type: DataTypes.INTEGER }
 });
 
+// Bookmark.sync({ alter: true }).then(
+//     () => console.log('message')
+// );
+
 const Author = sequelize.define('author', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     first_name: { type: DataTypes.STRING, allowNull: false },
     last_name: { type: DataTypes.STRING, allowNull: false }
 });
+
+// Author.sync({ alter: true }).then(
+//     () => console.log('message')
+// );
 
 const BookAuthor = sequelize.define('bookAuthor', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

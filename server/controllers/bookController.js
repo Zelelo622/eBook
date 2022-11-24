@@ -4,8 +4,8 @@ const ApiError = require('../error/ApiError');
 class BookController {
     async create(req, res, next) {
         try {
-            const { title, publication_date, link_file } = req.body;
-            const book = await Book.create({ title, publication_date, link_file });
+            const { title, publication_date, text } = req.body;
+            const book = await Book.create({ title, publication_date, text });
             return res.json(book);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -43,12 +43,12 @@ class BookController {
 
     async update(req, res) {
         const { id } = req.params;
-        const { title, publication_date, link_file } = req.body;
+        const { title, publication_date, text } = req.body;
         const book = Book.update(
             {
                 title: title,
                 publication_date: publication_date,
-                link_file: link_file
+                text: text
             },
             {
                 where: { id }
