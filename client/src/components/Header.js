@@ -17,7 +17,7 @@ const Header = observer(() => {
     }
 
     return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar className='mb-5' bg="dark" variant="dark">
             <Container>
                 <NavLink className="text-decoration-none" style={{ color: "white" }} to={BOOK_ROUTE}>eBook</NavLink>
                 {user.isAuth ?

@@ -14,6 +14,16 @@ class AuthorController {
         return res.json(authores);
     }
 
+    async getOne(req, res) {
+        const { id } = req.params;
+        const author = await Author.findOne(
+            {
+                where: { id }
+            }
+        );
+        return res.json(author);
+    }
+
     async delete(req, res) {
         const { id } = req.params;
         const author = Author.destroy(
