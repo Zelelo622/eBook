@@ -12,6 +12,7 @@ const CreateAuthor = ({ show, onHide }) => {
         formData.append('first_name', first_name);
         formData.append('last_name', last_name);
         createAuthor(formData).then(data => onHide());
+        window.location.reload(false);
     }
 
     return (
