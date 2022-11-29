@@ -5,6 +5,7 @@ import { Context } from '../index';
 import ListAuthorElement from './authorElem/ListAuthorElement';
 import UpdateAuthorElement from './authorElem/UpdateAuthorElement';
 import ListBookElement from './bookElem/ListBookElement';
+import UpdateBookElement from './bookElem/UpdateBookElement';
 
 const AppRouter = () => {
 
@@ -24,6 +25,7 @@ const AppRouter = () => {
             <Route path="/update-author/:id" element={<UpdateAuthorElement />} />
 
             <Route path="/book" exact element={<ListBookElement />} />
+            <Route path="/update-book/:id" element={<UpdateBookElement />} />
         </Routes>
     )
 }
