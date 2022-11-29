@@ -4,11 +4,11 @@ const router = new Router();
 const checkRole = require('../middleware/checkRoleMiddleware');
 
 
-router.post('/', /*checkRole('ADMIN'),*/ bookController.create);
+router.post('/', checkRole('ADMIN'), bookController.create);
 router.get('/', bookController.getAll);
 router.get('/:id', bookController.getOne);
-router.delete('/:id', /*checkRole('ADMIN'),*/ bookController.delete);
-router.put('/:id', /*checkRole('ADMIN'),*/ bookController.update);
+router.delete('/:id', checkRole('ADMIN'), bookController.delete);
+router.put('/:id', checkRole('ADMIN'), bookController.update);
 
 
 module.exports = router;

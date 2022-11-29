@@ -1,5 +1,4 @@
 import { $authHost, $host } from "./index";
-import jwt_decode from "jwt-decode";
 
 export const createAuthor = async (author) => {
     const { data } = await $authHost.post('api/author', author);
@@ -23,5 +22,30 @@ export const updateAuthor = async (author, id) => {
 
 export const deleteAuthor = async (id) => {
     const { data } = await $authHost.delete('api/author/' + id);
+    return data;
+}
+
+export const createBook = async (book) => {
+    const { data } = await $authHost.post('api/book', book);
+    return data;
+}
+
+export const fetchBook = async () => {
+    const { data } = await $host.get('api/book');
+    return data;
+}
+
+export const fetchBookOne = async (id) => {
+    const { data } = await $host.get('api/book/' + id);
+    return data;
+}
+
+export const updateBook = async (book, id) => {
+    const { data } = await $authHost.put('api/book/' + id, book);
+    return data
+}
+
+export const deleteBook = async (id) => {
+    const { data } = await $authHost.delete('api/book/' + id);
     return data;
 }

@@ -1,8 +1,8 @@
-import React, { Component, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Context } from '../index';
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { NavLink } from 'react-router-dom';
-import { ADMIN_ROUTE, BOOK_ROUTE, LOGIN_ROUTE } from "../utils/consts";
+import { ADMIN_ROUTE, BOOK_LIST, LOGIN_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 import {useNavigate} from 'react-router-dom'
 
@@ -19,7 +19,7 @@ const Header = observer(() => {
     return (
         <Navbar className='mb-5' bg="dark" variant="dark">
             <Container>
-                <NavLink className="text-decoration-none" style={{ color: "white" }} to={BOOK_ROUTE}>eBook</NavLink>
+                <NavLink className="text-decoration-none" style={{ color: "white" }} to={BOOK_LIST}>eBook</NavLink>
                 {user.isAuth ?
                     <Nav className="ms-auto" style={{ color: "white" }}>
                         <Button variant={"outline-light"} onClick={() => history(ADMIN_ROUTE)}>Админ панель</Button>

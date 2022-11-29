@@ -13,11 +13,12 @@ class BookController {
     }
 
     async getAll(req, res) {
-        let { limit, page } = req.query;
-        page = page || 1;
-        limit = limit || 9;
-        let offset = page * limit - limit;
-        let books = await Book.findAndCountAll({ limit, offset });
+        // let { limit, page } = req.query;
+        // page = page || 1;
+        // limit = limit || 9;
+        // let offset = page * limit - limit;
+        // let books = await Book.findAndCountAll({ limit, offset });
+        const books = await Book.findAll();
         return res.json(books);
     }
 
