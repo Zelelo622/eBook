@@ -1,11 +1,11 @@
-const { Book } = require('../models/models');
+const { Book, Author } = require('../models/models');
 const ApiError = require('../error/ApiError');
 
 class BookController {
     async create(req, res, next) {
         try {
-            const { title, publication_date, text } = req.body;
-            const book = await Book.create({ title, publication_date, text });
+            const { title, publication_date, text, author } = req.body;
+            const book = await Book.create({ title, publication_date, text, author });
             return res.json(book);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -44,12 +44,13 @@ class BookController {
 
     async update(req, res) {
         const { id } = req.params;
-        const { title, publication_date, text } = req.body;
+        const { title, publication_date, text, author } = req.body;
         const book = Book.update(
             {
                 title: title,
                 publication_date: publication_date,
-                text: text
+                text: text,
+                author: author
             },
             {
                 where: { id }

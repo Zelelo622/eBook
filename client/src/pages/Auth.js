@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { BOOK_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
+import { BOOK_LIST, BOOK_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 import { login, registration } from "../http/userAPI";
 import { observer } from "mobx-react-lite";
 import { Context } from "../index";
@@ -28,7 +28,7 @@ const Auth = observer(() => {
             }
             user.setUser(data)
             user.setIsAuth(true)
-            history(BOOK_ROUTE)
+            history(BOOK_LIST)
         } catch(e) {
             alert(e.response.data.message)
         }

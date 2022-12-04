@@ -59,6 +59,7 @@ export class ListBookElement extends Component {
                 <tr>
                   <th> Название</th>
                   <th> Дата публикации</th>
+                  <th> Автор</th>
                   <th> Функции</th>
                 </tr>
               </thead>
@@ -67,6 +68,7 @@ export class ListBookElement extends Component {
                   <tr key={book.id}>
                     <td> {book.title} </td>
                     <td> {book.publication_date.substr(0, 10)}</td>
+                    <td> {book.author}</td>
                     <td>
                       <button
                         onClick={() => this.editBook(book.id)}

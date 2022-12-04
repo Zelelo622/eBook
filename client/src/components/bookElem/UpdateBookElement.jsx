@@ -11,6 +11,7 @@ class UpdateBookComponent extends Component {
       title: "",
       publication_date: "",
       text: "",
+      author: "",
     };
 
     this.changeTitleHandler = this.changeTitleHandler.bind(this);
@@ -18,6 +19,7 @@ class UpdateBookComponent extends Component {
       this
     );
     this.changeTextHandler = this.changeTextHandler.bind(this);
+    this.changeAuthorHandler = this.changeAuthorHandler.bind(this);
     this.updateBookFun = this.updateBookFun.bind(this);
   }
 
@@ -28,6 +30,7 @@ class UpdateBookComponent extends Component {
         title: book.title,
         publication_date: book.publication_date,
         text: book.text,
+        author: book.author,
       });
     });
   }
@@ -38,6 +41,7 @@ class UpdateBookComponent extends Component {
       title: this.state.title,
       publication_date: this.state.publication_date,
       text: this.state.text,
+      author: this.state.author,
     };
     console.log("book => " + JSON.stringify(book));
     console.log("id => " + JSON.stringify(this.state.id));
@@ -57,6 +61,10 @@ class UpdateBookComponent extends Component {
   changeTextHandler = (event) => {
     this.setState({ text: event.target.value });
   };
+
+  changeAuthorHandler = (event) => {
+    this.setState({author: event.target.value});
+  }
 
   cancel() {
     this.props.navigation("/book");
@@ -96,11 +104,19 @@ class UpdateBookComponent extends Component {
                   <div className="form-group">
                     <label className="mb-1"> Текст: </label>
                     <textarea
-                      type="date"
                       name="text"
                       className="form-control mb-2"
                       value={this.state.text}
                       onChange={this.changeTextHandler}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="mb-1"> Автор: </label>
+                    <input
+                      name="author"
+                      className="form-control mb-2"
+                      value={this.state.author}
+                      onChange={this.changeAuthorHandler}
                     />
                   </div>
 

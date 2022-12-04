@@ -17,12 +17,13 @@ const Book = sequelize.define('book', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: { type: DataTypes.STRING, allowNull: false },
     publication_date: { type: DataTypes.DATE },
-    text: { type: DataTypes.TEXT }
+    text: { type: DataTypes.TEXT },
+    author: { type: DataTypes.STRING }
 });
 
-// Book.sync({ alter: true }).then(
-//         () => console.log('message')
-//     );
+Book.sync({ alter: true }).then(
+        () => console.log('message')
+);
 
 const Bookmark = sequelize.define('bookmark', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -47,17 +48,18 @@ const BookAuthor = sequelize.define('bookAuthor', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
 
+// BookAuthor.sync({ alter: true }).then(
+//     () => console.log('message')
+// );
+
 User.hasMany(Bookmark);
 Bookmark.belongsTo(User);
 
 Book.hasMany(Bookmark);
 Bookmark.belongsTo(Book);
 
-Book.hasMany(BookAuthor);
-BookAuthor.belongsTo(Book);
-
-Author.hasMany(BookAuthor);
-BookAuthor.belongsTo(Author);
+Book.belongsToMany(Author, {through: BookAuthor, foreignKey: 'id_book'});
+Author.belongsToMany(Book, {through: BookAuthor, foreignKey: 'id_author'});
 
 module.exports = {
     User,
