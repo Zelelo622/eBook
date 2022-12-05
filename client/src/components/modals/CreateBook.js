@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { createBook } from '../../http/bookAPI'
+import { createBook, fetchAuthor } from '../../http/bookAPI'
 
 
 const CreateBook = ({ show, onHide }) => {
@@ -9,12 +9,23 @@ const CreateBook = ({ show, onHide }) => {
     const [text, setText] = useState('');
     const [author, setAuthor] = useState('');
 
+    let authorList = [];
+    authorList = fetchAuthor();
+    // console.log(authorList);
+
     const addBook = () => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('publication_date', publication_date);
         formData.append('text', text);
         formData.append('author', author);
+        authorList.then((ath) => {
+            ath.map(({last_name}) => {
+                if (author === last_name) {
+                    // TODO добавить роутер для bookAuthor и создать id
+                }
+            });
+        })
         createBook(formData).then(data => onHide());
         window.location.reload(false);
     }

@@ -1,23 +1,15 @@
-const { Author } = require('../models/models');
+const { Author, BookAuthor } = require('../models/models');
 
 
 class AuthorBookController {
-    async addAuthor(req, res, authorId, bookId) {
-        return Author.findByPk(authorId).then((author) => {
-            if (!author) {
-                console.log('error');
-                return null;
-            }
-            return Book.findByPk(bookId).then((book) => {
-                if (!book) {
-                    console.log('error');
-                    return null;
-                }
-                author.addBook(book);
-                console.log(`>> added Book id=${book.id} to Author id=${author.id}`);
-                return author;
-            })
-        })
+    async create(req, res, next) {
+        try {
+            const { id_author, id_book } = req.body;
+            const id = await BookAuthor.create({ id_author, id_book });
+            return res.json(id);
+        } catch (e) {
+            next(ApiError.badRequest(e.message));
+        }
     }
 }
 
