@@ -1,6 +1,6 @@
+import BookRead from './components/readerElem/BookRead';
 import Admin from './pages/Admin';
 import Auth from './pages/Auth';
-import BookPage from './pages/BookPage';
 import { ADMIN_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, BOOK_ROUTE } from "./utils/consts";
 
 export const authRoutes = [
@@ -21,6 +21,6 @@ export const publicRoutes = [
     },
     {
         path: BOOK_ROUTE + '/:id',
-        Component: BookPage
+        Component: BookRead
     },
 ]
