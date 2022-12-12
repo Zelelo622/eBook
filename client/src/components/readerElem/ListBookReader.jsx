@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CreateBook from "../modals/CreateBook";
 
 import withNavigateHook from "../withNavigateHook";
+import Paginate from "./Paginate";
+import ReactPaginate from 'react-paginate';
 
 export class ListBookReader extends Component {
   constructor(props) {
@@ -14,13 +16,35 @@ export class ListBookReader extends Component {
       book: [],
       bookVisible: false,
       inputText: "",
+      currPage: 1,
+      recPerPage: 3,
     };
-    // ---
+  }
+
+  async componentDidMount() {
     fetchBook().then((res) => {
       this.setState({ book: res });
     });
-    // ---
   }
+
+  paginate = (pageNumber) => {
+    this.setState({ currPage: pageNumber });
+  };
+
+  previousPage = () => {
+    if (this.state.currPage !== 1) {
+      this.setState({ currPage: this.state.currPage - 1 });
+    }
+  };
+
+  nextPage = () => {
+    if (
+      this.state.currPage !==
+      Math.ceil(this.state.book.length / this.state.recPerPage)
+    ) {
+      this.setState({ currPage: this.state.currPage + 1 });
+    }
+  };
 
   inputHandler = (e) => {
     let lowerCase = e.target.value.toLowerCase();
@@ -30,6 +54,18 @@ export class ListBookReader extends Component {
   readBook(id) {
     this.props.navigation(`/book/${id}`);
   }
+
+  indexOfLastRec = () => {
+    return this.state.currPage * this.state.recPerPage;
+  };
+
+  indexOfFirstRec = () => {
+    return this.indexOfLastRec() - this.state.recPerPage;
+  };
+
+  currentRec = () => {
+    return this.state.book.slice(this.indexOfFirstRec(), this.indexOfLastRec());
+  };
 
   render() {
     return (
@@ -49,7 +85,7 @@ export class ListBookReader extends Component {
           <h2 className="text-center">Книги</h2>
           <div className="mt-5">
             <div className="d-flex flex-column bd-highlight gap-2">
-              {this.state.book
+              {this.currentRec()
                 .filter((book) => {
                   if (this.state.inputText === "") {
                     return book;
@@ -73,6 +109,13 @@ export class ListBookReader extends Component {
                   </Nav.Link>
                 ))}
             </div>
+            <Paginate
+              recsPerPage={this.state.recPerPage}
+              totalRecs={this.state.book.length}
+              paginate={this.paginate}
+              previousPage={this.previousPage}
+              nextPage={this.nextPage}
+            />
           </div>
         </Container>
       </div>
